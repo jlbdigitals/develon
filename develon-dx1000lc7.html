@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Develon DX1000LC-7 | El Poder de 100 Toneladas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+
+
+    <style>
+        :root {
+            --orange: #FF5500;
+            --dark-grey: #222222;
+            --light-grey: #f8f8f8;
+            --white: #FFFFFF;
+            --black: #111111;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Exo', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ANIMACIONES */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255,85,0,0.7); }
+            70%  { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(255,85,0,0); }
+            100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255,85,0,0); }
+        }
+        .reveal { opacity: 0; transition: var(--transition); }
+        .reveal.active { animation: fadeIn 0.8s forwards; }
+
+        /* ─── HEADER ─── */
+        header {
+            width: 100%; z-index: 1000; position: fixed; top: 0;
+            transition: var(--transition);
+        }
+
+        .top-bar {
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .top-bar span { display: flex; align-items: center; gap: 6px; }
+
+        .main-nav {
+            background-color: var(--dark-grey);
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        header.scrolled .main-nav {
+            background-color: rgba(34,34,34,0.92);
+            backdrop-filter: blur(10px);
+            padding: 8px 5%;
+        }
+
+        .logo {
+            color: white;
+            font-weight: 900;
+            font-size: 26px;
+            text-decoration: none;
+            font-style: italic;
+            letter-spacing: -1.5px;
+        }
+
+        .nav-links { display: flex; gap: 22px; }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--orange); }
+
+        /* Search + cart */
+        .nav-right { display: flex; align-items: center; gap: 10px; }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 34px;
+        }
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 0 12px;
+            font-size: 13px;
+            font-family: 'Exo', sans-serif;
+            width: 180px;
+            background: transparent;
+        }
+        .search-box button {
+            background: none;
+            border: none;
+            padding: 0 10px;
+            cursor: pointer;
+            font-size: 15px;
+            color: var(--dark-grey);
+            height: 100%;
+        }
+
+        .cart-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+        .cart-wrap:hover { color: var(--orange); }
+        .cart-badge {
+            background: red;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+            position: absolute;
+            top: -8px; right: 12px;
+            font-weight: 900;
+            color: white;
+        }
+        .cart-arrow { font-size: 13px; opacity: 0.8; }
+
+        /* ─── HERO ─── */
+        .hero {
+            height: 95vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.65)),
+                        url('WhatsApp Image 2026-04-08 at 15.42.09.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: var(--white);
+            margin-top: 78px; /* altura del header fijo */
+        }
+        .hero-content { max-width: 800px; animation: fadeIn 1.2s forwards; }
+        .hero-eyebrow {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+        .hero-content h1 {
+            font-size: clamp(40px, 6vw, 65px);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+            border-left: 4px solid var(--orange);
+            padding-left: 20px;
+            max-width: 600px;
+        }
+        .btn-hero {
+            background-color: var(--orange);
+            color: white;
+            padding: 18px 48px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 15px;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 3px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        /* ─── STAGE 3D ─── */
+        .stage-3d {
+            background: radial-gradient(circle, #2a2a2a 0%, #000 100%);
+            padding: 80px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .stage-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 560px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sketchfab-embed {
+            width: 100%; height: 520px; max-width: 750px;
+            z-index: 2; border: none; border-radius: 4px;
+            background: transparent;
+        }
+        .spec-card {
+            position: absolute;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,85,0,0.3);
+            padding: 22px 25px;
+            color: white;
+            border-radius: 4px;
+            width: 210px;
+            z-index: 3;
+            transition: var(--transition);
+            text-align: left;
+        }
+        .spec-card:hover {
+            border-color: var(--orange);
+            background: rgba(255,85,0,0.1);
+            transform: translateY(-5px);
+        }
+        .spec-card h4 {
+            font-size: 30px;
+            color: var(--orange);
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1;
+        }
+        .spec-card p {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0.7;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+        .c1 { top: 5%;    left: 0; }
+        .c2 { top: 5%;    right: 0; }
+        .c3 { bottom: 5%; left: 0; }
+        .c4 { bottom: 5%; right: 0; }
+
+        /* ─── PRODUCTO: 2 COLUMNAS ─── */
+        .product-section {
+            padding: 80px 5%;
+            background: var(--white);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* Columna izquierda */
+        .product-left {}
+
+        .product-title {
+            font-size: 28px;
+            font-weight: 900;
+            font-style: italic;
+            color: var(--orange);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 18px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            font-family: 'Exo', sans-serif;
+            color: #999;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: var(--transition);
+        }
+        .tab-btn.active {
+            color: var(--dark-grey);
+            border-bottom-color: var(--orange);
+        }
+
+        /* Descripción */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .desc-bullets { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+        .desc-bullets li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+            padding-left: 0;
+        }
+        .desc-bullets li strong { color: var(--dark-grey); }
+
+        /* Galería */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .gallery-item {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e8e8e8;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+            display: block;
+        }
+        .gallery-item img:hover { transform: scale(1.05); }
+        /* Placeholder si no hay imagen */
+        .gallery-placeholder {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Ficha técnica */
+        .tech-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .tech-table tr { border-bottom: 1px solid #eee; }
+        .tech-table td { padding: 10px 8px; }
+        .tech-table td:first-child { font-weight: 700; color: #555; width: 55%; }
+        .tech-table td:last-child { color: var(--dark-grey); font-weight: 400; }
+
+        /* ─── FORMULARIO (columna derecha) ─── */
+        .form-container {
+            background: var(--white);
+            border-radius: 4px;
+            border-top: 5px solid var(--orange);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.10);
+            padding: 40px;
+            position: sticky;
+            top: 100px;
+        }
+
+        /* Tipo de persona */
+        .persona-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .persona-btn {
+            background: none;
+            border: none;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Exo', sans-serif;
+            text-align: center;
+            transition: var(--transition);
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .persona-btn .radio-dot {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: inline-block;
+            flex-shrink: 0;
+            position: relative;
+            transition: var(--transition);
+        }
+        .persona-btn.active {
+            background: rgba(255,85,0,0.07);
+            color: var(--dark-grey);
+        }
+        .persona-btn.active .radio-dot {
+            border-color: var(--orange);
+            background: var(--orange);
+        }
+        .persona-btn:first-child { border-right: 1px solid #ddd; }
+
+        .form-section-title {
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin: 20px 0 12px;
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .form-row.full { grid-template-columns: 1fr; }
+        .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 0.5px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 11px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: 'Exo', sans-serif;
+            outline: none;
+            transition: var(--transition);
+            background-color: #fafafa;
+            color: var(--dark-grey);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--orange);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255,85,0,0.1);
+        }
+        .form-group input[disabled] {
+            background: #eee;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        /* Teléfono con prefijo */
+        .tel-wrap { display: flex; gap: 0; }
+        .tel-prefix {
+            padding: 11px 10px;
+            border: 1px solid #e0e0e0;
+            border-right: none;
+            border-radius: 3px 0 0 3px;
+            background: #eee;
+            font-size: 14px;
+            font-weight: 700;
+            color: #555;
+            white-space: nowrap;
+        }
+        .tel-wrap input {
+            border-radius: 0 3px 3px 0 !important;
+            flex: 1;
+        }
+
+        /* Radio financiamiento */
+        .finance-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .finance-btn {
+            background: none;
+            border: none;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Exo', sans-serif;
+            text-align: center;
+            transition: var(--transition);
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .finance-btn .radio-dot {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: inline-block;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .finance-btn.active {
+            background: rgba(255,85,0,0.07);
+            color: var(--dark-grey);
+        }
+        .finance-btn.active .radio-dot {
+            border-color: var(--orange);
+            background: var(--orange);
+        }
+        .finance-btn:first-child { border-right: 1px solid #ddd; }
+
+        .btn-submit {
+            background-color: var(--orange);
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: var(--transition);
+            border-radius: 3px;
+            letter-spacing: 1px;
+            font-family: 'Exo', sans-serif;
+        }
+        .btn-submit:hover { background-color: var(--black); transform: translateY(-2px); }
+
+        /* ─── NEWSLETTER ─── */
+        .newsletter {
+            background-color: #e0e0e0;
+            padding: 36px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .newsletter h3 {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            font-size: 18px;
+        }
+        .newsletter-form { display: flex; gap: 0; }
+        .newsletter-form input {
+            padding: 12px 18px;
+            border: none;
+            font-size: 14px;
+            font-family: 'Exo', sans-serif;
+            outline: none;
+            width: 300px;
+        }
+        .newsletter-form button {
+            background: var(--dark-grey);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: 'Exo', sans-serif;
+            transition: var(--transition);
+        }
+        .newsletter-form button:hover { background: var(--black); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark-grey);
+            color: white;
+            padding: 70px 5% 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 60px;
+        }
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 900;
+            font-style: italic;
+            color: white;
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
+            display: block;
+        }
+        .footer-col p, .footer-col li {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 10px;
+            list-style: none;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .footer-col li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-col li a:hover { color: var(--orange); }
+        .footer-col strong { font-weight: 700; color: #ccc; }
+
+        .btn-menu {
+            background: var(--orange);
+            color: white;
+            padding: 10px 22px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Exo', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        .btn-menu:hover { background: var(--black); }
+
+        .bottom-bar {
+            background: var(--orange);
+            padding: 14px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 -5.5%;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1100px) {
+            .product-grid { grid-template-columns: 1fr; gap: 40px; }
+            .form-container { position: static; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .stage-container { min-height: 800px; flex-direction: column; }
+            .sketchfab-embed { height: 380px; }
+            .spec-card { position: relative; width: 100%; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; margin-bottom: 12px; }
+        }
+
+        @media (max-width: 768px) {
+            /* Header */
+            .top-bar { display: none; }
+            .main-nav { padding: 12px 5%; }
+            .nav-links { display: none; }
+            .search-box { display: none; }
+            .logo { font-size: 22px; }
+            .cart-wrap { font-size: 22px; }
+
+            /* Hero */
+            .hero { margin-top: 54px; height: auto; min-height: 85vh; padding: 60px 5% 50px; }
+            .hero-eyebrow { font-size: 11px; }
+            .hero-content h1 { font-size: 34px; margin-bottom: 18px; }
+            .hero-content p { font-size: 15px; margin-bottom: 28px; }
+            .btn-hero { padding: 15px 32px; font-size: 14px; }
+
+            /* Stage 3D */
+            .stage-3d { padding: 50px 5%; }
+            .stage-container { min-height: auto; flex-direction: column; gap: 12px; }
+            .sketchfab-embed { height: 280px; order: 1; }
+            .spec-card {
+                position: relative; width: 100%;
+                top: auto !important; left: auto !important;
+                right: auto !important; bottom: auto !important;
+                margin-bottom: 0;
+            }
+            .c1 { order: 2; } .c2 { order: 3; }
+            .c3 { order: 4; } .c4 { order: 5; }
+
+            /* Producto */
+            .product-section { padding: 50px 5%; }
+            .product-grid { grid-template-columns: 1fr; gap: 30px; }
+            .tabs { overflow-x: auto; white-space: nowrap; }
+            .tab-btn { padding: 10px 14px; font-size: 11px; }
+            .gallery { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+            /* Formulario */
+            .form-container { padding: 28px 20px; }
+            .persona-toggle { grid-template-columns: 1fr; }
+            .persona-btn:first-child { border-right: none; border-bottom: 1px solid #ddd; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-row.three { grid-template-columns: 1fr; }
+            .finance-toggle { grid-template-columns: 1fr; }
+            .finance-btn:first-child { border-right: none; border-bottom: 1px solid #ddd; }
+
+            /* Newsletter */
+            .newsletter { flex-direction: column; text-align: center; padding: 30px 5%; gap: 16px; }
+            .newsletter-form { flex-direction: column; width: 100%; }
+            .newsletter-form input { width: 100%; }
+            .newsletter-form button { width: 100%; }
+
+            /* Footer */
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            footer { padding: 50px 5% 0; }
+            .bottom-bar { margin: 0 -5.5%; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-content h1 { font-size: 28px; }
+            .sketchfab-embed { height: 220px; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header id="main-header">
+    <div class="top-bar">
+        <span>📍 Nuestras Ubicaciones</span>
+        <span>📞 +56 2 2964 3050 &nbsp;·&nbsp; Ayuda</span>
+    </div>
+    <nav class="main-nav">
+        <a href="#" class="logo">DEVELON</a>
+        <div class="nav-links">
+            <a href="#">Somos</a>
+            <a href="#">Productos</a>
+            <a href="#">Postventa</a>
+            <a href="#">Actualidad</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="nav-right">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar...">
+                <button type="button">🔍</button>
+            </div>
+            <div class="cart-wrap">
+                🛒
+                <span class="cart-badge">0</span>
+                <span class="cart-arrow">∨</span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-eyebrow">Nueva Serie DX-7</p>
+        <h1>DX1000LC-7: El Poder<br>de 100 Toneladas</h1>
+        <p>Diseñada para los entornos mineros más hostiles. Máxima productividad con el menor consumo de combustible en su categoría gracias al sistema hidráulico VBO.</p>
+        <a href="#cotizar" class="btn-hero">Solicitar Cotización</a>
+    </div>
+</section>
+
+<!-- ─── STAGE 3D ─── -->
+<section class="stage-3d">
+    <div class="stage-container">
+        <div class="spec-card c1 reveal">
+            <h4>629 HP</h4>
+            <p>Motor Perkins 2806J de Alto Torque</p>
+        </div>
+        <div class="spec-card c2 reveal">
+            <h4>6.8 m³</h4>
+            <p>Capacidad de Balde Optimizada</p>
+        </div>
+
+        <iframe
+            class="sketchfab-embed"
+            title="Excavadora sobre Orugas DX1000LC-7 — Vista 3D Interactiva"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="https://sketchfab.com/models/647583f720704adaa1b6d0bb08fd7668/embed?autostart=1&ui_controls=0&ui_infos=0&ui_watermark=0&ui_watermark_link=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0&dnt=1&camera=0&preload=1&transparent=0&autospin=0.3&scrollwheel=0">
+        </iframe>
+
+        <div class="spec-card c3 reveal">
+            <h4>100 T</h4>
+            <p>Peso Operativo de Máxima Estabilidad</p>
+        </div>
+        <div class="spec-card c4 reveal">
+            <h4>8.79 m</h4>
+            <p>Profundidad de Excavación Extrema</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PRODUCTO: 2 COLUMNAS ─── -->
+<section class="product-section" id="cotizar">
+    <div class="product-grid">
+
+        <!-- COLUMNA IZQUIERDA: descripción + galería -->
+        <div class="product-left reveal">
+            <div class="product-title">DX1000LC-7</div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="descripcion">Descripción</button>
+                <button class="tab-btn" data-tab="adicional">Información Adicional</button>
+                <button class="tab-btn" data-tab="ficha">Ficha Técnica</button>
+            </div>
+
+            <!-- TAB: Descripción -->
+            <div class="tab-content active" id="tab-descripcion">
+                <ul class="desc-bullets">
+                    <li><strong>Potencia extrema y alto desempeño:</strong> Equipada con un motor diésel Perkins de 629 hp, permite ejecutar tareas de excavación y carga con máxima fuerza y velocidad.</li>
+                    <li><strong>Capacidad de excavación superior:</strong> Profundidad de hasta 8.79 m y balde de 6.8 m³, ideal para extracción masiva y movimientos de gran volumen.</li>
+                    <li><strong>Sistema hidráulico avanzado:</strong> Tres bombas de 523 L/min y control inteligente, proporcionando una respuesta rápida y precisa en cada maniobra.</li>
+                    <li><strong>Eficiencia en consumo de combustible:</strong> Tecnología Smart Power Control (SPC) y Virtual Based Off (VBO), optimizando el rendimiento mientras reduce costos operativos y emisiones.</li>
+                    <li><strong>Durabilidad y resistencia inigualables:</strong> Construida con materiales de alta calidad coreana, diseñada para soportar condiciones extremas en minería y construcción.</li>
+                    <li><strong>Tracción y estabilidad mejoradas:</strong> Sistema de orugas de alta resistencia, optimizado para operar en terrenos accidentados y desafiantes con total seguridad.</li>
+                    <li><strong>Máximo confort y seguridad:</strong> Cabina espaciosa con controles ergonómicos, excelente visibilidad y monitoreo de 360°, garantizando operaciones precisas y seguras en todo momento.</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 14px; color: #555; line-height: 1.7;">
+                    Con su diseño robusto, tecnología de vanguardia y eficiencia operativa, la DX1000LC-7 es la excavadora definitiva para maximizar la productividad en minería y construcción pesada.
+                </p>
+            </div>
+
+            <!-- TAB: Información Adicional -->
+            <div class="tab-content" id="tab-adicional">
+                <ul class="desc-bullets">
+                    <li><strong>Garantía:</strong> 2 años o 4,000 horas de operación.</li>
+                    <li><strong>Servicio postventa:</strong> Red nacional de técnicos certificados Develon.</li>
+                    <li><strong>Repuestos:</strong> Disponibilidad inmediata de piezas originales en Chile.</li>
+                    <li><strong>Financiamiento:</strong> Opciones de leasing y crédito directo disponibles.</li>
+                </ul>
+            </div>
+
+            <!-- TAB: Ficha Técnica -->
+            <div class="tab-content" id="tab-ficha">
+                <table class="tech-table">
+                    <tr><td>Motor</td><td>Perkins 2806J</td></tr>
+                    <tr><td>Potencia bruta</td><td>629 HP (469 kW)</td></tr>
+                    <tr><td>Peso operativo</td><td>100.000 kg</td></tr>
+                    <tr><td>Capacidad de balde</td><td>6.8 m³</td></tr>
+                    <tr><td>Profundidad de excavación</td><td>8.79 m</td></tr>
+                    <tr><td>Alcance máximo a nivel del suelo</td><td>14.48 m</td></tr>
+                    <tr><td>Fuerza de arranque del balde</td><td>620 kN</td></tr>
+                    <tr><td>Fuerza de arranque del brazo</td><td>395 kN</td></tr>
+                    <tr><td>Caudal del sistema hidráulico</td><td>523 L/min (×3 bombas)</td></tr>
+                    <tr><td>Velocidad de traslación</td><td>2.2 / 3.3 km/h</td></tr>
+                    <tr><td>Ancho de zapata</td><td>700 mm</td></tr>
+                </table>
+            </div>
+
+            <!-- Galería 2×2 -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-04-08 at 15.41.50.jpeg" alt="DX1000LC-7 vista frontal">
+                </div>
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-04-08 at 15.41.50 (1).jpeg" alt="DX1000LC-7 vista lateral">
+                </div>
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-04-08 at 15.41.50 (2).jpeg" alt="DX1000LC-7 vista trasera">
+                </div>
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-04-08 at 15.41.50 (3).jpeg" alt="DX1000LC-7 vista en operación">
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: Formulario -->
+        <div class="form-container reveal">
+
+            <!-- Tipo de persona -->
+            <div class="persona-toggle">
+                <button class="persona-btn active" data-persona="natural" type="button">
+                    <span class="radio-dot"></span> Soy una persona natural o EIRL
+                </button>
+                <button class="persona-btn" data-persona="empresa" type="button">
+                    <span class="radio-dot"></span> Soy una empresa
+                </button>
+            </div>
+
+            <form id="develon-lead-form">
+
+                <!-- Tipo de maquinaria -->
+                <p class="form-section-title">Tipo de maquinaria</p>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Categoría *</label>
+                        <select required>
+                            <option value="">Seleccione la categoría</option>
+                            <option value="excavadoras" selected>Excavadoras sobre Orugas</option>
+                            <option value="cargadores">Cargadores Frontales</option>
+                            <option value="camiones">Camiones Articulados</option>
+                            <option value="mini">Mini Excavadoras</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Modelo de maquinaria *</label>
+                        <select required>
+                            <option value="">Seleccione el modelo</option>
+                            <option value="dx1000lc7" selected>DX1000LC-7</option>
+                            <option value="dx800lc7">DX800LC-7</option>
+                            <option value="dx530lc7">DX530LC-7</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Información personal -->
+                <p class="form-section-title">Información personal</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" placeholder="Escriba su nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos *</label>
+                        <input type="text" placeholder="Escriba sus apellidos" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>RUT *</label>
+                        <input type="text" placeholder="Escriba su RUT" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <div class="tel-wrap">
+                            <span class="tel-prefix">+56</span>
+                            <input type="tel" placeholder="9 XXXX XXXX" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Correo electrónico *</label>
+                        <input type="email" placeholder="Escriba su correo electrónico" required>
+                    </div>
+                </div>
+
+                <!-- Concesionarios -->
+                <p class="form-section-title">Concesionarios</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Región *</label>
+                        <select required id="select-region">
+                            <option value="">Seleccionar Región</option>
+                            <option value="rm">Región Metropolitana</option>
+                            <option value="ant">Antofagasta</option>
+                            <option value="val">Valparaíso</option>
+                            <option value="bio">Biobío</option>
+                            <option value="ara">La Araucanía</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Comuna *</label>
+                        <select required id="select-comuna">
+                            <option value="">Seleccione una comuna</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Sucursal *</label>
+                        <select required>
+                            <option value="">Seleccione una sucursal</option>
+                            <option value="stgo-central">Santiago Central</option>
+                            <option value="ant">Antofagasta</option>
+                            <option value="vina">Viña del Mar</option>
+                            <option value="concepcion">Concepción</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Financiamiento -->
+                <p class="form-section-title">Información de financiamiento y contacto</p>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label>¿Necesitas financiamiento? *</label>
+                    <div class="finance-toggle">
+                        <button class="finance-btn active" data-finance="si" type="button">
+                            <span class="radio-dot"></span> Sí, necesito financiamiento
+                        </button>
+                        <button class="finance-btn" data-finance="no" type="button">
+                            <span class="radio-dot"></span> No necesito financiamiento
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Comentarios adicionales</label>
+                        <textarea rows="3" placeholder="Indique detalles específicos del proyecto o requerimientos de balde..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- ─── NEWSLETTER ─── -->
+<section class="newsletter">
+    <h3>Suscríbete a nuestro Newsletter</h3>
+    <div class="newsletter-form">
+        <input type="email" placeholder="Tu correo electrónico">
+        <button type="button">Enviar</button>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <span class="footer-logo">DEVELON</span>
+            <p>Contact Center: <strong>+56 2 2964 3050</strong></p>
+            <p>WhatsApp: <strong>+56 9 3399 4415</strong></p>
+            <p>Email: <strong>ventas@develon-ce.cl</strong></p>
+            <button class="btn-menu">+ Menú</button>
+        </div>
+        <div class="footer-col">
+            <h4>Categorías</h4>
+            <ul>
+                <li><a href="#">Camiones Articulados</a></li>
+                <li><a href="#">Cargadores Frontales</a></li>
+                <li><a href="#">Excavadoras</a></li>
+                <li><a href="#">Mini Excavadoras</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Atención al Consumidor</h4>
+            <ul>
+                <li><a href="#">FAQ y Ayuda</a></li>
+                <li><a href="#">Seguimiento de Pedidos</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Síguenos</h4>
+            <p>Mantente al día con nuestras novedades en redes sociales.</p>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        © 2025 HD Hyundai Infracore Chile S.A. Todos los derechos reservados.
+    </div>
+</footer>
+
+<script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
+        { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Toggle persona
+    document.querySelectorAll('.persona-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // Toggle financiamiento
+    document.querySelectorAll('.finance-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.finance-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // Región → Comuna encadenado
+    const comunasPorRegion = {
+        rm:  ['Santiago', 'Las Condes', 'Providencia', 'Maipú', 'Pudahuel'],
+        ant: ['Antofagasta', 'Calama', 'Tocopilla'],
+        val: ['Valparaíso', 'Viña del Mar', 'Quilpué', 'Villa Alemana'],
+        bio: ['Concepción', 'Talcahuano', 'Los Ángeles', 'Chillán'],
+        ara: ['Temuco', 'Villarrica', 'Pucón', 'Angol'],
+    };
+    document.getElementById('select-region').addEventListener('change', function () {
+        const sel = document.getElementById('select-comuna');
+        sel.innerHTML = '<option value="">Seleccione una comuna</option>';
+        (comunasPorRegion[this.value] || []).forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.toLowerCase().replace(/\s+/g, '-');
+            opt.textContent = c;
+            sel.appendChild(opt);
+        });
+    });
+
+    // Form submit
+    document.getElementById('develon-lead-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = e.target.querySelector('.btn-submit');
+        btn.textContent = 'Procesando solicitud...';
+        btn.style.opacity = '0.7';
+        setTimeout(() => {
+            alert('¡Solicitud enviada con éxito! Un especialista de Develon se pondrá en contacto con usted en las próximas 24 horas hábiles.');
+            e.target.reset();
+            btn.textContent = 'Enviar';
+            btn.style.opacity = '1';
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>
