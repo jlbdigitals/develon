@@ -246,12 +246,33 @@
             will-change: transform;
             transform-style: preserve-3d;
             transform: perspective(600px) rotateX(0deg) rotateY(0deg);
-            transition: transform 0.08s linear, box-shadow 0.08s linear, border-color 0.3s, background 0.3s;
+            transition: transform 0.08s linear, box-shadow 0.08s linear, background 0.3s;
+            border: 1px solid rgba(255,85,0,0.15);
+            overflow: hidden;
         }
+        .spec-card::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(255,85,0,0.9) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            transform: translate(-50%, -50%);
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            mix-blend-mode: screen;
+            z-index: 0;
+            filter: blur(2px);
+        }
+        .spec-card:hover::before { opacity: 1; }
         .spec-card:hover {
-            border-color: var(--orange);
-            background: rgba(255,85,0,0.12);
+            background: rgba(255,85,0,0.06);
+            border-color: rgba(255,85,0,0.5);
         }
+        .spec-card h4, .spec-card p { position: relative; z-index: 1; }
         .spec-card h4 {
             font-size: 30px;
             color: var(--orange);
@@ -1139,7 +1160,7 @@
         });
     });
 
-    // Tilt 3D en spec-cards
+    // Spotlight + tilt 3D en spec-cards
     document.querySelectorAll('.spec-card').forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
@@ -1147,11 +1168,17 @@
             const y = e.clientY - rect.top;
             const cx = rect.width / 2;
             const cy = rect.height / 2;
-            const rotY = ((x - cx) / cx) * 22;
-            const rotX = -((y - cy) / cy) * 22;
+            const rotY = ((x - cx) / cx) * 15;
+            const rotX = -((y - cy) / cy) * 15;
+
+            // Spotlight sigue el mouse
+            card.style.setProperty('--mouse-x', x + 'px');
+            card.style.setProperty('--mouse-y', y + 'px');
+
+            // Tilt
             card.style.transition = 'transform 0.08s linear, box-shadow 0.08s linear';
-            card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.08) translateZ(20px)`;
-            card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 40px rgba(255,85,0,0.3)`;
+            card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.06) translateZ(15px)`;
+            card.style.boxShadow = `0 0 30px rgba(255,85,0,0.25), ${-rotY}px ${rotX}px 20px rgba(255,85,0,0.15)`;
         });
         card.addEventListener('mouseleave', () => {
             card.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
