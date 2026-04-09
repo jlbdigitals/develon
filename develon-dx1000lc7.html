@@ -242,10 +242,14 @@
             transition: var(--transition);
             text-align: left;
         }
+        .spec-card {
+            will-change: transform;
+            transform-style: preserve-3d;
+            transform: perspective(600px) rotateX(0deg) rotateY(0deg);
+        }
         .spec-card:hover {
             border-color: var(--orange);
-            background: rgba(255,85,0,0.1);
-            transform: translateY(-5px);
+            background: rgba(255,85,0,0.12);
         }
         .spec-card h4 {
             font-size: 30px;
@@ -1131,6 +1135,25 @@
             opt.value = c.toLowerCase().replace(/\s+/g, '-');
             opt.textContent = c;
             sel.appendChild(opt);
+        });
+    });
+
+    // Tilt 3D en spec-cards
+    document.querySelectorAll('.spec-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+            const rotY = ((x - cx) / cx) * 18;
+            const rotX = -((y - cy) / cy) * 18;
+            card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.06)`;
+            card.style.boxShadow = `${-rotY * 1.5}px ${rotX * 1.5}px 30px rgba(255,85,0,0.25)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
+            card.style.boxShadow = 'none';
         });
     });
 
