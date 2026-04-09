@@ -214,24 +214,6 @@
             position: relative;
             overflow: hidden;
         }
-        .stage-bg-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(60px, 10vw, 130px);
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            white-space: nowrap;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(255,85,0,0.35);
-            letter-spacing: -2px;
-            pointer-events: none;
-            z-index: 0;
-            will-change: transform;
-            user-select: none;
-        }
         .stage-container {
             position: relative;
             width: 100%;
@@ -856,7 +838,6 @@
 
 <!-- ─── STAGE 3D ─── -->
 <section class="stage-3d" id="stage-section">
-    <div class="stage-bg-text" id="stage-bg-text">DX1000LC-7</div>
     <div class="stage-container">
         <div class="spec-card c1 reveal">
             <h4>629 HP</h4>
@@ -1202,17 +1183,7 @@
         });
     });
 
-    // Parallax texto fondo stage
-    const stageBgText = document.getElementById('stage-bg-text');
-    const stageSection = document.getElementById('stage-section');
-    window.addEventListener('scroll', () => {
-        const rect = stageSection.getBoundingClientRect();
-        const progress = -rect.top / (rect.height || 1);
-        const y = (progress - 0.5) * 60;
-        stageBgText.style.transform = `translate(-50%, calc(-50% + ${y}px))`;
-    });
-
-    // Tilt + spotlight en galería
+// Tilt + spotlight en galería
     document.querySelectorAll('.gallery-item').forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
