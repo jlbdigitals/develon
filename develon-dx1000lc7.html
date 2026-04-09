@@ -246,6 +246,7 @@
             will-change: transform;
             transform-style: preserve-3d;
             transform: perspective(600px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.08s linear, box-shadow 0.08s linear, border-color 0.3s, background 0.3s;
         }
         .spec-card:hover {
             border-color: var(--orange);
@@ -1146,13 +1147,15 @@
             const y = e.clientY - rect.top;
             const cx = rect.width / 2;
             const cy = rect.height / 2;
-            const rotY = ((x - cx) / cx) * 18;
-            const rotX = -((y - cy) / cy) * 18;
-            card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.06)`;
-            card.style.boxShadow = `${-rotY * 1.5}px ${rotX * 1.5}px 30px rgba(255,85,0,0.25)`;
+            const rotY = ((x - cx) / cx) * 22;
+            const rotX = -((y - cy) / cy) * 22;
+            card.style.transition = 'transform 0.08s linear, box-shadow 0.08s linear';
+            card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.08) translateZ(20px)`;
+            card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 40px rgba(255,85,0,0.3)`;
         });
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
+            card.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
+            card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0px)';
             card.style.boxShadow = 'none';
         });
     });
